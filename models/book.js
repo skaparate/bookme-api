@@ -1,22 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-class Book {
-  constructor() {
-    const name = 'book';
-    const bookSchema = new Schema({
-      title: String,
-      author: Array,
-      createdAt: Date,
-      updatedAt: Date,
-      userId: mongoose.ObjectId
-    });
-    return mongoose.model(name, bookSchema);
+const name = 'books';
+const bookSchema = new Schema(
+  {
+    title: String,
+    authors: Array,
+    createdAt: Date,
+    updatedAt: Date,
+    userId: mongoose.ObjectId
+  },
+  {
+    timestamps: true
   }
+);
 
-  toString() {
-    return name;
-  }
-}
+bookSchema.query.findByTitle = function(title) {
+  return this.where({ title: new RegExp(title, 'i') });
+};
 
-module.exports = new Book();
+module.exports = mongoose.model(name, bookSchema);
