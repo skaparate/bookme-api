@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test node server.js",
-    "watch": "nodemon ./server.js"
+    "watch": "nodemon ./server.js",
+    "unit-tests": "node_modules/mocha/bin/mocha ./**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "helmet": "^3.21.2",
     "mocha": "^6.2.2",
     "mongoose": "^5.7.12",
+    "winston": "^3.2.1",
     "zombie": "^6.1.4"
   },
   "devDependencies": {
