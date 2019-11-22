@@ -1,0 +1,44 @@
+{
+  "name": "bookme-api",
+  "version": "0.0.1",
+  "description": "Free Code Camp's Information Security and QA personal library",
+  "main": "server.js",
+  "scripts": {
+    "test": "NODE_ENV=test node server.js",
+    "watch": "nodemon ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skaparate/bookme-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "helmet",
+    "mongoose"
+  ],
+  "author": "skaparate",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skaparate/bookme-api/issues"
+  },
+  "homepage": "https://github.com/skaparate/bookme-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "mocha": "^6.2.2",
+    "mongoose": "^5.7.12",
+    "zombie": "^6.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.0"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
