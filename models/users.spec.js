@@ -5,7 +5,7 @@ const expect = chai.expect;
 const db = require('./db');
 const users = require('./users');
 const log = require('../logger').child({
-    test: 'user.model'
+  test: 'user.model'
 });
 
 describe('Users collection tests', function(done) {

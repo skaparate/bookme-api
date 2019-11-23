@@ -40,6 +40,18 @@ function closeDb(callback) {
   );
 }
 
+process.on('SIGINT', _ => {
+  log.info('Closing database connection');
+  closeDb(function(err) {
+    if (err) {
+      log.error('Failed to close database connection:', err);
+      process.exit(-1);
+    } else {
+      process.exit(0);
+    }
+  });
+});
+
 module.exports = {
   initDb,
   closeDb
