@@ -3,12 +3,12 @@ const mocha = require('mocha');
 const chai = require('chai');
 const expect = chai.expect;
 const db = require('./db');
-const user = require('./user');
+const users = require('./users');
 const log = require('../logger').child({
     test: 'user.model'
 });
 
-describe('User Model Tests', function(done) {
+describe('Users collection tests', function(done) {
   const userList = [
     {
       name: 'user 1',
@@ -24,12 +24,12 @@ describe('User Model Tests', function(done) {
     }
   ];
 
-  const deleteUser = new user({
+  const deleteUser = new users({
     name: 'delete-me',
     password: 'deleteme-pass'
   });
 
-  const alice = new user({
+  const alice = new users({
     name: 'Alice Mcdonald',
     password: 'super-secure'
   });
@@ -40,7 +40,7 @@ describe('User Model Tests', function(done) {
         done(err);
       }
 
-      user.insertMany(userList, function(insertErr, docs) {
+      users.insertMany(userList, function(insertErr, docs) {
         if (insertErr) {
           return done(insertErr);
         }
@@ -72,7 +72,7 @@ describe('User Model Tests', function(done) {
   });
 
   it('Should retrieve a list of users', function(done) {
-    user.find(function(err, docs) {
+    users.find(function(err, docs) {
       if (err) {
         return done(err);
       }
@@ -99,7 +99,7 @@ describe('User Model Tests', function(done) {
 
       expect(doc.nModified).to.equal(1);
       expect(doc.ok).to.equal(1);
-      user
+      users
         .find()
         .findByName(payload.name)
         .exec(function(err, result) {
@@ -117,7 +117,7 @@ describe('User Model Tests', function(done) {
   });
 
   it('Should delete a user', function(done) {
-    user.findByIdAndDelete(deleteUser._id, function(err, doc) {
+    users.findByIdAndDelete(deleteUser._id, function(err, doc) {
       if (err) {
         return done(err);
       }
@@ -127,7 +127,7 @@ describe('User Model Tests', function(done) {
   });
 
   this.afterAll(function(done) {
-    user.deleteMany().then(
+    users.deleteMany().then(
       function() {
         db.closeDb(done);
       },

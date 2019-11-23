@@ -3,7 +3,7 @@ const mocha = require('mocha');
 const chai = require('chai');
 const db = require('./db');
 
-describe('Database connection', () => {
+describe('Database connection tests', () => {
   it('Should connect to database and close the connection', function(done) {
     db.initDb(error => {
       chai.assert.isUndefined(error);
