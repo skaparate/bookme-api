@@ -2,9 +2,10 @@ const { createLogger, format, transports } = require('winston');
 const path = require('path');
 
 const env = process.env.NODE_ENV;
+const silent = process.env.WINSTON_QUIET ? true : false;
 
 const logger = createLogger({
-  level: env !== 'production' ? 'debug' : 'info',
+  level: env !== 'production' ? 'silly' : 'info',
   format: format.combine(
     format.timestamp({
       format: 'YYYY-MM-DD HH:mm:ss'
@@ -16,12 +17,16 @@ const logger = createLogger({
   defaultMeta: { app: 'bookme' },
   transports: [
     //
-    // - Write to all logs with level `info` and below to `quick-start-combined.log`.
-    // - Write all logs error (and below) to `quick-start-error.log`.
+    // - Write to all logs with level `info` and below to `bookme-combined.log`.
+    // - Write all logs error (and below) to `bookme-error.log`.
     //
-    new transports.File({ filename: path.join('logs', 'bookme-error.log'), level: 'error' }),
+    new transports.File({
+      filename: path.join('logs', 'bookme-error.log'),
+      level: 'error'
+    }),
     new transports.File({ filename: path.join('logs', 'bookme-combined.log') })
-  ]
+  ],
+  silent
 });
 
 //
