@@ -12,7 +12,9 @@ function initDb(callback) {
     pass: process.env.DB_PASS,
     dbName: process.env.DB_NAME,
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
   };
   log.debug('Connection options:', options);
   mongoose.connect(uri, options).then(
