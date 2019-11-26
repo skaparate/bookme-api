@@ -8,7 +8,8 @@ const bookSchema = new Schema(
     authors: Array,
     createdAt: Date,
     updatedAt: Date,
-    userId: mongoose.ObjectId
+    // Removed to accommodate FCC tests:
+    // userId: mongoose.ObjectId
   },
   {
     timestamps: true

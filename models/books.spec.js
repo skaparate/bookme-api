@@ -33,26 +33,26 @@ describe('Book model tests', function() {
 
         bookList.push({
           title: 'Thinking in Java',
-          authors: ['Bruce Eckel'],
-          userId: alice._id
+          authors: ['Bruce Eckel']
+          // userId: alice._id
         });
 
         bookList.push({
           title: 'Thinking in C++',
-          authors: ['Bruce Eckel'],
-          userId: alice._id
+          authors: ['Bruce Eckel']
+          // userId: alice._id
         });
 
         bookList.push({
           title: 'Moby-Dick',
-          authors: ['Herman Melville'],
-          userId: alice._id
+          authors: ['Herman Melville']
+          // userId: alice._id
         });
 
         bookList.push({
           title: 'Crónicas de una Muerte Anunciada',
-          authors: ['Gabriel García Márquez'],
-          userId: alice._id
+          authors: ['Gabriel García Márquez']
+          // userId: alice._id
         });
 
         // Save books
@@ -71,8 +71,8 @@ describe('Book model tests', function() {
   it('Should add a new book', function(done) {
     const newBook = new books({
       title: 'The Lord of the Rings',
-      authors: ['John Ronald Reuel Tolkien'],
-      userId: alice._id
+      authors: ['John Ronald Reuel Tolkien']
+      // userId: alice._id
     });
 
     newBook.save(function(err, doc) {
@@ -120,7 +120,7 @@ describe('Book model tests', function() {
               return done(err);
             }
             expect(doc.title).to.equal(update.title);
-            expect(doc.userId).to.eql(found.userId);
+            // expect(doc.userId).to.eql(found.userId);
             expect(doc._id).to.eql(found._id);
             done();
           }
@@ -165,7 +165,7 @@ describe('Book model tests', function() {
           return done(err);
         }
 
-        expect(res.userId).to.eql(alice._id);
+        // expect(res.userId).to.eql(alice._id);
         expect(res.title).to.equal('Thinking in C++');
         done();
       }
@@ -174,11 +174,6 @@ describe('Book model tests', function() {
 
   this.afterAll(function(done) {
     books.deleteMany(function(err) {
-      if (err) {
-        return db.closeDb(function(err) {
-          done(err);
-        });
-      }
       alice.remove(function(err, doc) {
         db.closeDb(done);
       });
