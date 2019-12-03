@@ -6,7 +6,8 @@
   "scripts": {
     "test": "NODE_ENV=test node server.js",
     "watch": "nodemon ./server.js",
-    "unit-tests": "NODE_ENV=spec node_modules/mocha/bin/mocha -b ./**/*.spec.js"
+    "unit-tests": "NODE_ENV=spec node_modules/mocha/bin/mocha -b ./**/*.spec.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
