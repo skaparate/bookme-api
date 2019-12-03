@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
+const log = require('./logger');
 
 const apiRoutes = require('./routes/api.js');
 const fccTestingRoutes = require('./routes/fcctesting.js');
@@ -34,6 +35,11 @@ fccTestingRoutes(app);
 
 apiRoutes(app);
 
+app.use(function(err, req, res, next) {
+  if (err) {
+  }
+});
+
 const port = process.env.PORT || 3000;
 
 initDb(function(err) {
@@ -43,9 +49,9 @@ initDb(function(err) {
 
   //Start our server and tests!
   app.listen(port, function() {
-    console.log('Listening on port ' + port);
+    log.info('Listening on port ' + port);
     if (process.env.NODE_ENV === 'test') {
-      console.log('Running Tests...');
+      log.debug('Running Tests...');
       setTimeout(function() {
         try {
           runner.run();
@@ -54,8 +60,8 @@ initDb(function(err) {
           });
         } catch (e) {
           var error = e;
-          console.log('Tests are not valid:');
-          console.log(error);
+          log.debug('Tests are not valid:');
+          log.error(error);
         }
       }, 1500);
     }
